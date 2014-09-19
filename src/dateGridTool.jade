@@ -1,0 +1,52 @@
+.bt-view.bt-view.bt-day-parting-grid-view(data-ref='dayPartingGrid', onselectstart="return false")
+  span.bt-view.bt-view.bt-text.fsm.fwn.fcb
+    | Your ads will be served in your audience's time zone. For example, if you select 8am - 10am, your ad will be served to people from 8am to 10am in their local time.
+
+  ._52t2.clearfix
+    ._8-y 12am
+    ._8-z
+    ._8-z
+    ._8-y 3am
+    ._8-z
+    ._8-z
+    ._8-y 6am
+    ._8-z
+    ._8-z
+    ._8-y 9am
+    ._8-z
+    ._8-z
+    ._8-y 12pm
+    ._8-z
+    ._8-z
+    ._8-y 3pm
+    ._8-z
+    ._8-z
+    ._8-y 6pm
+    ._8-z
+    ._8-z
+    ._8-y 9pm
+    ._8-z
+    ._8-z
+    ._8_p All Day
+  div
+    div(ng-repeat="day in dateGrid.week", ng-class="{'_8-v _516k clearfix': ($index == 0), '_516k clearfix': ($index > 0 && $index < 7), '_8-x _516k clearfix': ($index == 7)}")
+
+      .bt-view.bt-view._516l._516q
+        ._516r {{day.title}}
+
+      .bt-view.bt-view
+        div(ng-repeat="hour in day.hours", ng-mousedown="hourMouseDown(hour)", ng-mouseover="hourMouseOver(hour)", ng-mouseup="hourMouseUp(hour)", ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}")
+
+      .bt-view.bt-view._8-w(data-ref='allDayBox0')
+
+    ._8-x._516k.clearfix
+      .bt-view.bt-view._516l._516q(data-ref='everyDayLabel')
+        ._516r {{dateGrid.everyday.title}}
+
+      .bt-view.bt-view
+        div(ng-repeat="hour in dateGrid.everyday.hours", ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2)}")
+
+
+  ._496o
+    .hourStatus-selected._496q
+    div Scheduled hours are shaded blue
