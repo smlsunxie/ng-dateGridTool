@@ -15,7 +15,7 @@
 
   "main": [
     "dist/css/dateGridTool.css",
-    "dist/js/dateGridTool.js"
+    "dist/js/dateGridTool.js",
     "dist/dateGridTool.html"
   ],
 
