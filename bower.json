@@ -12,6 +12,13 @@
     "mak"
   ],
   "license": "MIT",
+  
+  "main": [
+    "dist/css/dateGridTool.js",
+    "dist/js/dateGridTool.css"
+    "dist/dateGridTool.html"
+  ],
+
   "ignore": [
     "**/.*",
     "node_modules",
