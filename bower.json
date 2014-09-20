@@ -14,8 +14,8 @@
   "license": "MIT",
 
   "main": [
-    "dist/css/dateGridTool.css",
-    "dist/js/dateGridTool.js"
+    "dist/dateGridTool.css",
+    "dist/dateGridTool.js"
   ],
 
   "ignore": [
