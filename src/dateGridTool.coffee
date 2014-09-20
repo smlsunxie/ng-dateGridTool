@@ -4,8 +4,8 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
 
     return {
       restrict: "E"
-
-      templateUrl: "../dist/dateGridTool.html"
+      # templateUrl: 'dateGridTool.html'
+      template: """{html}"""
 
       link: (scope, element, attrs) ->
         scope.dateGrid.startHour = {}

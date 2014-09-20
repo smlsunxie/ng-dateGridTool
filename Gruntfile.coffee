@@ -20,7 +20,7 @@ module.exports = (grunt) ->
           bare: false
         },
         files: {
-          'dist/js/dateGridTool.js': 'src/js/dateGridTool.coffee'
+          'dist/dateGridTool.js': 'temp/dateGridTool.coffee'
         }
       }
     }
@@ -35,7 +35,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: "src/"
-          src: "css/*"
+          src: "*.css"
           dest: "dist/"
           filter: "isFile"
         ]
@@ -81,6 +81,24 @@ module.exports = (grunt) ->
       }
     }
 
+
+    "string-replace":
+      dev:
+        files:
+          'temp/dateGridTool.coffee': 'src/dateGridTool.coffee'
+
+        options:
+          replacements: [
+            {
+              pattern: "{html}",
+              replacement: (match, p1, offset, string) ->
+                return grunt.file.read('dist/dateGridTool.html');
+            }
+          ]
+
+
+
+
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
   # Register tasks
   grunt.registerTask "serve", [
@@ -96,8 +114,11 @@ module.exports = (grunt) ->
   ]
   grunt.registerTask "build", [
     "clean"
-    "coffee"
     "jade"
+    "string-replace"
+    "coffee"
+
+
     "copy:build"
     "copy:example"
   ]
