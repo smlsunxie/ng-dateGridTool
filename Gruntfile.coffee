@@ -11,6 +11,7 @@ module.exports = (grunt) ->
         },
         files: {
           'dist/dateGridTool.html': 'src/dateGridTool.jade'
+          'example/index.html': 'src/example/index.jade'
         }
       },
     }
@@ -21,6 +22,7 @@ module.exports = (grunt) ->
         },
         files: {
           'dist/dateGridTool.js': 'temp/dateGridTool.coffee'
+          'example/main.js': 'src/example/main.coffee'
         }
       }
     }
@@ -63,8 +65,7 @@ module.exports = (grunt) ->
           livereload: true
 
         files: [
-          "src/**/*.{js,html,css}"
-          "example/*.{js,html,css}"
+          "src/**/*.{coffee,jade,css}"
         ]
         tasks: [
           "build"
