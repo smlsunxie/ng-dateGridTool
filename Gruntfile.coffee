@@ -109,24 +109,17 @@ module.exports = (grunt) ->
     "watch"
   ]
   grunt.registerTask "server", ["serve"]
-  grunt.registerTask "test", [
-    "jshint"
-    "karma"
-  ]
   grunt.registerTask "build", [
     "clean"
     "jade"
     "string-replace"
     "coffee"
-
-
     "copy:build"
     "copy:example"
   ]
 
   grunt.registerTask "default", [
     "clean"
-    "test"
     "build"
   ]
   return
