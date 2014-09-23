@@ -41,6 +41,35 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
 
 
 
+        # Check everyday & all day
+        checkEveryday = (hour) ->
+
+          for day in scope.dateGrid.week
+            if not day.hours[hour].selected
+              # setSelected null, hour, false
+              return
+          setSelected null, hour, true
+
+        checkAllDay = (day) ->
+
+          for hour in scope.dateGrid.week[day].hours
+            if not hour.selected
+              return
+          setSelected day, null, true
+
+        checkEverydayAndAllDay = (day, hour, selectedValue) ->
+
+          if not selectedValue
+            setSelected null, hour, false
+            setSelected day, null, false
+            return
+
+          checkEveryday hour
+          checkAllDay day
+
+
+
+        # Change selected
         setSelected = (day, hour, selectedValue) ->
 
           if day == null
@@ -49,6 +78,9 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
             scope.dateGrid.week[day].allday.selected = selectedValue
           else
             scope.dateGrid.week[day].hours[hour].selected = selectedValue
+
+            # Check if everyday/allday or not
+            checkEverydayAndAllDay day, hour, selectedValue
 
         setHourSelected = (hour, selectedValue) ->
 
@@ -66,6 +98,7 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
 
           hour.selected = !hour.selected
           scope.dateGrid.startHour = hour
+          checkEverydayAndAllDay hour.day, hour.hour, hour.selected
 
         scope.hourMouseOver = (hour) ->
 
@@ -101,7 +134,7 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
           scope.dateGrid.everydayOverHour = hour
           selectedValue = scope.dateGrid.everydayStartHour.selected
 
-          for hour in [scope.dateGrid.everydayStartHour.hour .. scope.dateGrid.everydayOverHour.hour]
+          for hour in [scope.dateGrid.everydayStartHour.hour..scope.dateGrid.everydayOverHour.hour]
             setSelected null, hour, selectedValue
             setHourSelected hour, selectedValue
 
@@ -112,11 +145,9 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
 
         selectedValue = false
 
-        
+
 
         scope.allDayMouseDown = (weekDay, day) ->
-
-          console.log "weekDay", weekDay, "day", day
 
           weekDay.allday.selected = !weekDay.allday.selected
           selectedValue = weekDay.allday.selected
