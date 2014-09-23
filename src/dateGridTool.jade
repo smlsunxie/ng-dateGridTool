@@ -35,10 +35,10 @@
         ._516r {{day.title}}
 
       .bt-view.bt-view
-        div(ng-repeat="hour in day.hours", ng-mousedown="hourMouseDown(hour)", ng-mouseover="hourMouseOver(hour)", ng-mouseup="hourMouseUp(hour)", ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}")
+        div(id="hourGrid", ng-repeat="hour in day.hours", ng-mousedown="hourMouseDown(hour)", ng-mouseover="hourMouseOver(hour)", ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}")
 
       //- All day
-      .bt-view.bt-view._8-w(data-ref='allDayBox0', ng-mousedown="allDayMouseDown(day, $index)", ng-mouseover="allDayMouseOver(day, $index)", ng-mouseup="allDayMouseUp(day, $index)", ng-class="{'hourStatus-selected': day.allday.selected}")
+      .bt-view.bt-view._8-w(id="allDayGrid", data-ref='allDayBox0', ng-mousedown="allDayMouseDown(day, $index)", ng-mouseover="allDayMouseOver(day, $index)", ng-class="{'hourStatus-selected': day.allday.selected}")
 
     //- Everyday
     ._8-x._516k.clearfix
@@ -46,7 +46,7 @@
         ._516r {{dateGrid.everyday.title}}
 
       .bt-view.bt-view
-        div(ng-repeat="hour in dateGrid.everyday.hours", ng-mousedown="everydayMouseDown(hour)", ng-mouseover="everydayMouseOver(hour)", ng-mouseup="everydayMouseUp(hour)", ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}")
+        div(id="everydayGrid", ng-repeat="hour in dateGrid.everyday.hours", ng-mousedown="everydayMouseDown(hour)", ng-mouseover="everydayMouseOver(hour)", ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}")
 
 
   ._496o

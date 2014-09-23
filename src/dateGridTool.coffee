@@ -1,4 +1,4 @@
-angular.module("dateGridTool", []).directive "dateGridTool", [() ->
+angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($document) ->
 
     return {
       restrict: "E"
@@ -46,7 +46,6 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
 
           for day in scope.dateGrid.week
             if not day.hours[hour].selected
-              # setSelected null, hour, false
               return
           setSelected null, hour, true
 
@@ -111,7 +110,7 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
             for hour in [scope.dateGrid.startHour.hour..scope.dateGrid.overHour.hour]
               setSelected day, hour, selectedValue
 
-        scope.hourMouseUp = (hour) ->
+        scope.hourMouseUp = () ->
 
           scope.dateGrid.startHour = {}
           scope.dateGrid.overHour = {}
@@ -138,22 +137,22 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
             setSelected null, hour, selectedValue
             setHourSelected hour, selectedValue
 
-        scope.everydayMouseUp = (hour) ->
+        scope.everydayMouseUp = () ->
 
           scope.dateGrid.everydayStartHour = {}
           scope.dateGrid.everydayOverHour = {}
 
-        selectedValue = false
 
 
+        allDaySelectedValue = false
 
         scope.allDayMouseDown = (weekDay, day) ->
 
           weekDay.allday.selected = !weekDay.allday.selected
-          selectedValue = weekDay.allday.selected
+          allDaySelectedValue = weekDay.allday.selected
 
-          setSelected day, null, selectedValue
-          setDaySelected day, selectedValue
+          setSelected day, null, allDaySelectedValue
+          setDaySelected day, allDaySelectedValue
 
           scope.dateGrid.allDayStartDay = day
 
@@ -164,17 +163,26 @@ angular.module("dateGridTool", []).directive "dateGridTool", [() ->
           scope.dateGrid.allDayOverDay = day
 
           for day in [scope.dateGrid.allDayStartDay..scope.dateGrid.allDayOverDay]
-            setSelected day, null, selectedValue
-            setDaySelected day, selectedValue
+            setSelected day, null, allDaySelectedValue
+            setDaySelected day, allDaySelectedValue
 
-        scope.allDayMouseUp = (weekDay, day) ->
+        scope.allDayMouseUp = () ->
 
           scope.dateGrid.allDayStartDay = null
           scope.dateGrid.allDayOverDay = null
+          allDaySelectedValue = false
 
 
 
         init()
+
+
+
+        $document.bind "mouseup", (event) ->
+
+          scope.hourMouseUp()
+          scope.everydayMouseUp()
+          scope.allDayMouseUp()
 
     }
 ]
