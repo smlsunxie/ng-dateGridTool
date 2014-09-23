@@ -4,7 +4,7 @@
     var app;
     app = ng.module("demo", ["dateGridTool"]);
     return app.controller("demoCtrl", function($scope) {
-      return $scope.dateGrid = {
+      $scope.dateGrid = {
         week: [
           {
             title: "monday",
@@ -40,6 +40,9 @@
           title: "everyday",
           hours: []
         }
+      };
+      $scope.aaa = function() {
+        return console.log("$scope.dateGrid", $scope.dateGrid);
       };
     });
   })(angular);

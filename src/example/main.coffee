@@ -16,4 +16,9 @@
         title: "everyday"
         hours: []
 
+    $scope.aaa = () ->
+      console.log "$scope.dateGrid", $scope.dateGrid
+
+    return
+
 ) angular

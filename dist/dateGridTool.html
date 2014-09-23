@@ -35,14 +35,14 @@
       <div class="bt-view bt-view">
         <div ng-repeat="hour in day.hours" ng-mousedown="hourMouseDown(hour)" ng-mouseover="hourMouseOver(hour)" ng-mouseup="hourMouseUp(hour)" ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}"></div>
       </div>
-      <div data-ref="allDayBox0" class="bt-view bt-view _8-w"></div>
+      <div data-ref="allDayBox0" ng-mousedown="allDayMouseDown(day, $index)" ng-mouseover="allDayMouseOver(day, $index)" ng-mouseup="allDayMouseUp(day, $index)" ng-class="{'hourStatus-selected': day.allday.selected}" class="bt-view bt-view _8-w"></div>
     </div>
     <div class="_8-x _516k clearfix">
       <div data-ref="everyDayLabel" class="bt-view bt-view _516l _516q">
         <div class="_516r">{{dateGrid.everyday.title}}</div>
       </div>
       <div class="bt-view bt-view">
-        <div ng-repeat="hour in dateGrid.everyday.hours" ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2)}"></div>
+        <div ng-repeat="hour in dateGrid.everyday.hours" ng-mousedown="everydayMouseDown(hour)" ng-mouseover="everydayMouseOver(hour)" ng-mouseup="everydayMouseUp(hour)" ng-class="{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}"></div>
       </div>
     </div>
   </div>
