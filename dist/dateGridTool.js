@@ -6,16 +6,13 @@
         scope: {
           dateGrid: "="
         },
-        template: "<div data-ref=\"dayPartingGrid\" onselectstart=\"return false\" class=\"bt-view bt-view bt-day-parting-grid-view\"><span class=\"bt-view bt-view bt-text fsm fwn fcb\">Your ads will be served in your audience's time zone. For example, if you select 8am - 10am, your ad will be served to people from 8am to 10am in their local time.</span>\n  <div class=\"_52t2 clearfix\">\n    <div class=\"_8-y\">12am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">3am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">6am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">9am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">12pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">3pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">6pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">9pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8_p\">All Day</div>\n  </div>\n  <div>\n    <div ng-repeat=\"day in dateGrid.week\" ng-class=\"{'_8-v _516k clearfix': ($index == 0), '_516k clearfix': ($index &gt; 0 &amp;&amp; $index &lt; 7), '_8-x _516k clearfix': ($index == 7)}\">\n      <div class=\"bt-view bt-view _516l _516q\">\n        <div class=\"_516r\">{{day.title}}</div>\n      </div>\n      <div class=\"bt-view bt-view\">\n        <div id=\"hourGrid\" ng-repeat=\"hour in day.hours\" ng-mousedown=\"hourMouseDown(hour)\" ng-mouseover=\"hourMouseOver(hour)\" ng-class=\"{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}\"></div>\n      </div>\n      <div id=\"allDayGrid\" data-ref=\"allDayBox0\" ng-mousedown=\"allDayMouseDown(day, $index)\" ng-mouseover=\"allDayMouseOver(day, $index)\" ng-class=\"{'hourStatus-selected': day.allday.selected}\" class=\"bt-view bt-view _8-w\"></div>\n    </div>\n    <div class=\"_8-x _516k clearfix\">\n      <div data-ref=\"everyDayLabel\" class=\"bt-view bt-view _516l _516q\">\n        <div class=\"_516r\">{{dateGrid.everyday.title}}</div>\n      </div>\n      <div class=\"bt-view bt-view\">\n        <div id=\"everydayGrid\" ng-repeat=\"hour in dateGrid.everyday.hours\" ng-mousedown=\"everydayMouseDown(hour)\" ng-mouseover=\"everydayMouseOver(hour)\" ng-class=\"{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"_496o\">\n    <div class=\"hourStatus-selected _496q\"></div>\n    <div>Scheduled hours are shaded blue</div>\n  </div>\n</div>",
+        template: "<div data-ref=\"dayPartingGrid\" onselectstart=\"return false\" class=\"bt-view bt-view bt-day-parting-grid-view\">\n  <div class=\"_52t2 clearfix\">\n    <div class=\"_8-y\">12am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">3am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">6am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">9am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">12pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">3pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">6pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">9pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8_p\">All Day</div>\n  </div>\n  <div>\n    <div ng-repeat=\"day in dateGrid.week\" ng-class=\"{'_8-v _516k clearfix': ($index == 0), '_516k clearfix': ($index &gt; 0 &amp;&amp; $index &lt; 7), '_8-x _516k clearfix': ($index == 7)}\">\n      <div class=\"bt-view bt-view _516l _516q\">\n        <div class=\"_516r\">{{day.title}}</div>\n      </div>\n      <div class=\"bt-view bt-view\">\n        <div id=\"hourGrid\" ng-repeat=\"hour in day.hours\" ng-mousedown=\"hourMouseDown(hour)\" ng-mouseover=\"hourMouseOver(hour)\" ng-class=\"{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}\"></div>\n      </div>\n      <div id=\"allDayGrid\" data-ref=\"allDayBox0\" ng-mousedown=\"allDayMouseDown(day, $index)\" ng-mouseover=\"allDayMouseOver(day, $index)\" ng-class=\"{'hourStatus-selected': day.allday.selected}\" class=\"bt-view bt-view _8-w\"></div>\n    </div>\n    <div class=\"_8-x _516k clearfix\">\n      <div data-ref=\"everyDayLabel\" class=\"bt-view bt-view _516l _516q\">\n        <div class=\"_516r\">{{dateGrid.everyday.title}}</div>\n      </div>\n      <div class=\"bt-view bt-view\">\n        <div id=\"everydayGrid\" ng-repeat=\"hour in dateGrid.everyday.hours\" ng-mousedown=\"everydayMouseDown(hour)\" ng-mouseover=\"everydayMouseOver(hour)\" ng-class=\"{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"_496o\">\n    <div class=\"hourStatus-selected _496q\"></div>\n    <div>Scheduled hours are shaded blue</div>\n  </div>\n</div>",
         link: function(scope, element, attrs) {
-          var DAYHOUR_ARRAY, WEEKDAY_ARRAY, allDaySelectedValue, checkAllDay, checkEveryday, checkEverydayAndAllDay, init, setDaySelected, setHourSelected, setSelected, _i, _results;
-          scope.dateGrid.startHour = {};
-          scope.dateGrid.overHour = {};
-          scope.dateGrid.endHour = {};
-          scope.dateGrid.everydayStartHour = {};
-          scope.dateGrid.everydayOverHour = {};
-          scope.dateGrid.allDayStartDay = null;
-          scope.dateGrid.allDayOverDay = null;
+          var ALL_DAY_GRID, DAYHOUR_ARRAY, EVERYDAY_GRID, HOUR_GRID, WEEKDAY_ARRAY, checkAllDay, checkEveryday, checkEverydayAndAllDay, init, resetStartGrid, setDaySelected, setHourSelected, setSelected, setStartGrid, _i, _results;
+          scope.dateGrid.start = {};
+          HOUR_GRID = "hourGrid";
+          EVERYDAY_GRID = "everydayGrid";
+          ALL_DAY_GRID = "allDayGrid";
           WEEKDAY_ARRAY = [0, 1, 2, 3, 4, 5, 6];
           DAYHOUR_ARRAY = (function() {
             _results = [];
@@ -46,6 +43,25 @@
               });
             }
             return _results1;
+          };
+          setStartGrid = function(type, value, selected) {
+            if (type === ALL_DAY_GRID) {
+              return scope.dateGrid.start = {
+                type: type,
+                day: value,
+                selected: selected
+              };
+            } else {
+              return scope.dateGrid.start = {
+                type: type,
+                day: value.day,
+                hour: value.hour,
+                selected: value.selected
+              };
+            }
+          };
+          resetStartGrid = function() {
+            return scope.dateGrid.start = {};
           };
           checkEveryday = function(hour) {
             var day, _j, _len, _ref;
@@ -108,23 +124,22 @@
           };
           scope.hourMouseDown = function(hour) {
             hour.selected = !hour.selected;
-            scope.dateGrid.startHour = hour;
+            setStartGrid(HOUR_GRID, hour);
             return checkEverydayAndAllDay(hour.day, hour.hour, hour.selected);
           };
           scope.hourMouseOver = function(hour) {
-            var day, selectedValue, _j, _ref, _ref1, _results1;
-            if (!scope.dateGrid.startHour) {
+            var d, h, selectedValue, _j, _ref, _ref1, _results1;
+            if (scope.dateGrid.start.type !== HOUR_GRID) {
               return;
             }
-            scope.dateGrid.overHour = hour;
-            selectedValue = scope.dateGrid.startHour.selected;
+            selectedValue = scope.dateGrid.start.selected;
             _results1 = [];
-            for (day = _j = _ref = scope.dateGrid.startHour.day, _ref1 = scope.dateGrid.overHour.day; _ref <= _ref1 ? _j <= _ref1 : _j >= _ref1; day = _ref <= _ref1 ? ++_j : --_j) {
+            for (d = _j = _ref = scope.dateGrid.start.day, _ref1 = hour.day; _ref <= _ref1 ? _j <= _ref1 : _j >= _ref1; d = _ref <= _ref1 ? ++_j : --_j) {
               _results1.push((function() {
                 var _k, _ref2, _ref3, _results2;
                 _results2 = [];
-                for (hour = _k = _ref2 = scope.dateGrid.startHour.hour, _ref3 = scope.dateGrid.overHour.hour; _ref2 <= _ref3 ? _k <= _ref3 : _k >= _ref3; hour = _ref2 <= _ref3 ? ++_k : --_k) {
-                  _results2.push(setSelected(day, hour, selectedValue));
+                for (h = _k = _ref2 = scope.dateGrid.start.hour, _ref3 = hour.hour; _ref2 <= _ref3 ? _k <= _ref3 : _k >= _ref3; h = _ref2 <= _ref3 ? ++_k : --_k) {
+                  _results2.push(setSelected(d, h, selectedValue));
                 }
                 return _results2;
               })());
@@ -132,8 +147,7 @@
             return _results1;
           };
           scope.hourMouseUp = function() {
-            scope.dateGrid.startHour = {};
-            return scope.dateGrid.overHour = {};
+            return resetStartGrid();
           };
           scope.everydayMouseDown = function(hour) {
             var day, _j, _len;
@@ -142,51 +156,47 @@
               day = WEEKDAY_ARRAY[_j];
               setSelected(day, hour.hour, hour.selected);
             }
-            return scope.dateGrid.everydayStartHour = hour;
+            return setStartGrid(EVERYDAY_GRID, hour);
           };
           scope.everydayMouseOver = function(hour) {
-            var selectedValue, _j, _ref, _ref1, _results1;
-            if (!scope.dateGrid.everydayStartHour) {
+            var h, selectedValue, _j, _ref, _ref1, _results1;
+            if (scope.dateGrid.start.type !== EVERYDAY_GRID) {
               return;
             }
-            scope.dateGrid.everydayOverHour = hour;
-            selectedValue = scope.dateGrid.everydayStartHour.selected;
+            selectedValue = scope.dateGrid.start.selected;
             _results1 = [];
-            for (hour = _j = _ref = scope.dateGrid.everydayStartHour.hour, _ref1 = scope.dateGrid.everydayOverHour.hour; _ref <= _ref1 ? _j <= _ref1 : _j >= _ref1; hour = _ref <= _ref1 ? ++_j : --_j) {
-              setSelected(null, hour, selectedValue);
-              _results1.push(setHourSelected(hour, selectedValue));
+            for (h = _j = _ref = scope.dateGrid.start.hour, _ref1 = hour.hour; _ref <= _ref1 ? _j <= _ref1 : _j >= _ref1; h = _ref <= _ref1 ? ++_j : --_j) {
+              setSelected(null, h, selectedValue);
+              _results1.push(setHourSelected(h, selectedValue));
             }
             return _results1;
           };
           scope.everydayMouseUp = function() {
-            scope.dateGrid.everydayStartHour = {};
-            return scope.dateGrid.everydayOverHour = {};
+            return resetStartGrid();
           };
-          allDaySelectedValue = false;
           scope.allDayMouseDown = function(weekDay, day) {
+            var allDaySelectedValue;
             weekDay.allday.selected = !weekDay.allday.selected;
             allDaySelectedValue = weekDay.allday.selected;
             setSelected(day, null, allDaySelectedValue);
             setDaySelected(day, allDaySelectedValue);
-            return scope.dateGrid.allDayStartDay = day;
+            return setStartGrid(ALL_DAY_GRID, day, allDaySelectedValue);
           };
           scope.allDayMouseOver = function(weekDay, day) {
-            var _j, _ref, _ref1, _results1;
-            if (!scope.dateGrid.allDayStartDay) {
+            var d, selectedValue, _j, _ref, _results1;
+            if (scope.dateGrid.start.type !== ALL_DAY_GRID) {
               return;
             }
-            scope.dateGrid.allDayOverDay = day;
+            selectedValue = scope.dateGrid.start.selected;
             _results1 = [];
-            for (day = _j = _ref = scope.dateGrid.allDayStartDay, _ref1 = scope.dateGrid.allDayOverDay; _ref <= _ref1 ? _j <= _ref1 : _j >= _ref1; day = _ref <= _ref1 ? ++_j : --_j) {
-              setSelected(day, null, allDaySelectedValue);
-              _results1.push(setDaySelected(day, allDaySelectedValue));
+            for (d = _j = _ref = scope.dateGrid.start.day; _ref <= day ? _j <= day : _j >= day; d = _ref <= day ? ++_j : --_j) {
+              setSelected(d, null, selectedValue);
+              _results1.push(setDaySelected(d, selectedValue));
             }
             return _results1;
           };
           scope.allDayMouseUp = function() {
-            scope.dateGrid.allDayStartDay = null;
-            scope.dateGrid.allDayOverDay = null;
-            return allDaySelectedValue = false;
+            return resetStartGrid();
           };
           init();
           return $document.bind("mouseup", function(event) {

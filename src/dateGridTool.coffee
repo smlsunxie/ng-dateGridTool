@@ -9,15 +9,10 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
 
       link: (scope, element, attrs) ->
 
-        scope.dateGrid.startHour = {}
-        scope.dateGrid.overHour = {}
-        scope.dateGrid.endHour = {}
-
-        scope.dateGrid.everydayStartHour = {}
-        scope.dateGrid.everydayOverHour = {}
-
-        scope.dateGrid.allDayStartDay = null
-        scope.dateGrid.allDayOverDay = null
+        scope.dateGrid.start = {}
+        HOUR_GRID = "hourGrid"
+        EVERYDAY_GRID = "everydayGrid"
+        ALL_DAY_GRID = "allDayGrid"
 
         WEEKDAY_ARRAY = [0 .. 6]
         DAYHOUR_ARRAY = [0 .. 23]
@@ -38,6 +33,26 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
                   selected: false
             scope.dateGrid.week[day].allday =
               selected: false
+
+
+
+        setStartGrid = (type, value, selected) ->
+
+          if type == ALL_DAY_GRID
+            scope.dateGrid.start =
+              type: type
+              day: value
+              selected: selected
+          else
+            scope.dateGrid.start =
+              type: type
+              day: value.day
+              hour: value.hour
+              selected: value.selected
+
+        resetStartGrid = () ->
+
+          scope.dateGrid.start = {}
 
 
 
@@ -77,8 +92,6 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
             scope.dateGrid.week[day].allday.selected = selectedValue
           else
             scope.dateGrid.week[day].hours[hour].selected = selectedValue
-
-            # Check if everyday/allday or not
             checkEverydayAndAllDay day, hour, selectedValue
 
         setHourSelected = (hour, selectedValue) ->
@@ -93,30 +106,31 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
         
 
 
+        # Hour grid
         scope.hourMouseDown = (hour) ->
 
           hour.selected = !hour.selected
-          scope.dateGrid.startHour = hour
+
+          setStartGrid HOUR_GRID, hour
           checkEverydayAndAllDay hour.day, hour.hour, hour.selected
 
         scope.hourMouseOver = (hour) ->
 
-          return unless scope.dateGrid.startHour
+          return unless scope.dateGrid.start.type == HOUR_GRID
 
-          scope.dateGrid.overHour = hour
-          selectedValue = scope.dateGrid.startHour.selected
+          selectedValue = scope.dateGrid.start.selected
 
-          for day in [scope.dateGrid.startHour.day..scope.dateGrid.overHour.day]
-            for hour in [scope.dateGrid.startHour.hour..scope.dateGrid.overHour.hour]
-              setSelected day, hour, selectedValue
+          for d in [scope.dateGrid.start.day..hour.day]
+            for h in [scope.dateGrid.start.hour..hour.hour]
+              setSelected d, h, selectedValue
 
         scope.hourMouseUp = () ->
 
-          scope.dateGrid.startHour = {}
-          scope.dateGrid.overHour = {}
+          resetStartGrid()
 
 
 
+        # Everyday grid
         scope.everydayMouseDown = (hour) ->
 
           hour.selected = !hour.selected
@@ -124,27 +138,23 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
           for day in WEEKDAY_ARRAY
             setSelected day, hour.hour, hour.selected
 
-          scope.dateGrid.everydayStartHour = hour
+          setStartGrid EVERYDAY_GRID, hour
 
         scope.everydayMouseOver = (hour) ->
 
-          return unless scope.dateGrid.everydayStartHour
+          return unless scope.dateGrid.start.type == EVERYDAY_GRID
 
-          scope.dateGrid.everydayOverHour = hour
-          selectedValue = scope.dateGrid.everydayStartHour.selected
+          selectedValue = scope.dateGrid.start.selected
 
-          for hour in [scope.dateGrid.everydayStartHour.hour..scope.dateGrid.everydayOverHour.hour]
-            setSelected null, hour, selectedValue
-            setHourSelected hour, selectedValue
+          for h in [scope.dateGrid.start.hour..hour.hour]
+            setSelected null, h, selectedValue
+            setHourSelected h, selectedValue
 
         scope.everydayMouseUp = () ->
 
-          scope.dateGrid.everydayStartHour = {}
-          scope.dateGrid.everydayOverHour = {}
+          resetStartGrid()
 
 
-
-        allDaySelectedValue = false
 
         scope.allDayMouseDown = (weekDay, day) ->
 
@@ -154,23 +164,21 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
           setSelected day, null, allDaySelectedValue
           setDaySelected day, allDaySelectedValue
 
-          scope.dateGrid.allDayStartDay = day
+          setStartGrid ALL_DAY_GRID, day, allDaySelectedValue
 
         scope.allDayMouseOver = (weekDay, day) ->
 
-          return unless scope.dateGrid.allDayStartDay
+          return unless scope.dateGrid.start.type == ALL_DAY_GRID
 
-          scope.dateGrid.allDayOverDay = day
+          selectedValue = scope.dateGrid.start.selected
 
-          for day in [scope.dateGrid.allDayStartDay..scope.dateGrid.allDayOverDay]
-            setSelected day, null, allDaySelectedValue
-            setDaySelected day, allDaySelectedValue
+          for d in [scope.dateGrid.start.day..day]
+            setSelected d, null, selectedValue
+            setDaySelected d, selectedValue
 
         scope.allDayMouseUp = () ->
 
-          scope.dateGrid.allDayStartDay = null
-          scope.dateGrid.allDayOverDay = null
-          allDaySelectedValue = false
+          resetStartGrid()
 
 
 

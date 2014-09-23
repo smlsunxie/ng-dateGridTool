@@ -7,42 +7,39 @@
       $scope.dateGrid = {
         week: [
           {
-            title: "monday",
+            title: "Monday",
             hours: [],
             allday: {}
           }, {
-            title: "tuesday",
+            title: "Tuesday",
             hours: [],
             allday: {}
           }, {
-            title: "wednesday",
+            title: "Wednesday",
             hours: [],
             allday: {}
           }, {
-            title: "thursday",
+            title: "Thursday",
             hours: [],
             allday: {}
           }, {
-            title: "friday",
+            title: "Friday",
             hours: [],
             allday: {}
           }, {
-            title: "saturday",
+            title: "Saturday",
             hours: [],
             allday: {}
           }, {
-            title: "sunday",
+            title: "Sunday",
             hours: [],
             allday: {}
           }
         ],
         everyday: {
-          title: "everyday",
+          title: "Everyday",
           hours: []
         }
-      };
-      $scope.aaa = function() {
-        return console.log("$scope.dateGrid", $scope.dateGrid);
       };
     });
   })(angular);

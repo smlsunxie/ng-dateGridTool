@@ -4,20 +4,17 @@
   app.controller "demoCtrl", ($scope) ->
     $scope.dateGrid =
       week: [
-        {title: "monday", hours: [], allday: {} }
-        {title: "tuesday", hours: [], allday: {} }
-        {title: "wednesday", hours: [], allday: {} }
-        {title: "thursday", hours: [], allday: {} }
-        {title: "friday", hours: [], allday: {} }
-        {title: "saturday", hours: [], allday: {} }
-        {title: "sunday", hours: [], allday: {} }
+        {title: "Monday", hours: [], allday: {} }
+        {title: "Tuesday", hours: [], allday: {} }
+        {title: "Wednesday", hours: [], allday: {} }
+        {title: "Thursday", hours: [], allday: {} }
+        {title: "Friday", hours: [], allday: {} }
+        {title: "Saturday", hours: [], allday: {} }
+        {title: "Sunday", hours: [], allday: {} }
       ]
       everyday:
-        title: "everyday"
+        title: "Everyday"
         hours: []
-
-    $scope.aaa = () ->
-      console.log "$scope.dateGrid", $scope.dateGrid
 
     return
 
