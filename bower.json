@@ -1,16 +1,18 @@
 {
   "name": "ng-date-grid-tool",
   "version": "0.0.1",
-  "description": "facebook ad schedule datetime define tool",
+  "description": "Schedule datetime define tool",
   "keywords": [
     "facebook",
     "schedule",
     "datetimepicker"
   ],
+
   "authors": [
     "smlsunxie",
     "mak"
   ],
+  
   "license": "MIT",
 
   "main": [
