@@ -8,7 +8,7 @@
         },
         template: "<div data-ref=\"dayPartingGrid\" onselectstart=\"return false\" class=\"bt-view bt-view bt-day-parting-grid-view\">\n  <div class=\"_52t2 clearfix\">\n    <div class=\"_8-y\">12am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">3am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">6am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">9am</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">12pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">3pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">6pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-y\">9pm</div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8-z\"></div>\n    <div class=\"_8_p\">All Day</div>\n  </div>\n  <div>\n    <div ng-repeat=\"day in dateGrid.week\" ng-class=\"{'_8-v _516k clearfix': ($index == 0), '_516k clearfix': ($index &gt; 0 &amp;&amp; $index &lt; 7), '_8-x _516k clearfix': ($index == 7)}\">\n      <div class=\"bt-view bt-view _516l _516q\">\n        <div class=\"_516r\">{{day.title}}</div>\n      </div>\n      <div class=\"bt-view bt-view\">\n        <div id=\"hourGrid\" ng-repeat=\"hour in day.hours\" ng-mousedown=\"hourMouseDown(hour)\" ng-mouseover=\"hourMouseOver(hour)\" ng-class=\"{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}\"></div>\n      </div>\n      <div id=\"allDayGrid\" data-ref=\"allDayBox0\" ng-mousedown=\"allDayMouseDown(day, $index)\" ng-mouseover=\"allDayMouseOver(day, $index)\" ng-class=\"{'hourStatus-selected': day.allday.selected}\" class=\"bt-view bt-view _8-w\"></div>\n    </div>\n    <div class=\"_8-x _516k clearfix\">\n      <div data-ref=\"everyDayLabel\" class=\"bt-view bt-view _516l _516q\">\n        <div class=\"_516r\">{{dateGrid.everyday.title}}</div>\n      </div>\n      <div class=\"bt-view bt-view\">\n        <div id=\"everydayGrid\" ng-repeat=\"hour in dateGrid.everyday.hours\" ng-mousedown=\"everydayMouseDown(hour)\" ng-mouseover=\"everydayMouseOver(hour)\" ng-class=\"{'_516n _516l _516m': ($index%3 == 0), '_516p _516l _516m': ($index%3 == 1), '_516o _516l _516m': ($index%3 == 2), 'hourStatus-selected': hour.selected}\"></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"_496o\">\n    <div class=\"hourStatus-selected _496q\"></div>\n    <div>Scheduled hours are shaded blue</div>\n  </div>\n</div>",
         link: function(scope, element, attrs) {
-          var ALL_DAY_GRID, DAYHOUR_ARRAY, EVERYDAY_GRID, HOUR_GRID, WEEKDAY_ARRAY, checkAllDay, checkEveryday, checkEverydayAndAllDay, init, resetStartGrid, setDaySelected, setHourSelected, setSelected, setStartGrid, _i, _results;
+          var ALL_DAY_GRID, DAYHOUR_ARRAY, EVERYDAY_GRID, HOUR_GRID, WEEKDAY_ARRAY, checkAllDay, checkEveryday, checkEverydayAndAllDay, init, reset, resetStartGrid, setDaySelected, setHourSelected, setSelected, setStartGrid, _i, _results;
           scope.dateGrid.start = {};
           HOUR_GRID = "hourGrid";
           EVERYDAY_GRID = "everydayGrid";
@@ -41,6 +41,22 @@
               _results1.push(scope.dateGrid.week[day].allday = {
                 selected: false
               });
+            }
+            return _results1;
+          };
+          reset = function() {
+            var day, hour, _j, _k, _len, _len1, _results1;
+            _results1 = [];
+            for (_j = 0, _len = WEEKDAY_ARRAY.length; _j < _len; _j++) {
+              day = WEEKDAY_ARRAY[_j];
+              for (_k = 0, _len1 = DAYHOUR_ARRAY.length; _k < _len1; _k++) {
+                hour = DAYHOUR_ARRAY[_k];
+                scope.dateGrid.week[day].hours[hour].selected = false;
+                if (day === 0) {
+                  scope.dateGrid.everyday.hours[hour].selected = false;
+                }
+              }
+              _results1.push(scope.dateGrid.week[day].allday.selected = false);
             }
             return _results1;
           };
@@ -198,7 +214,9 @@
           scope.allDayMouseUp = function() {
             return resetStartGrid();
           };
-          init();
+          if (scope.dateGrid.everyday.hours.length === 0) {
+            init();
+          }
           return $document.bind("mouseup", function(event) {
             scope.hourMouseUp();
             scope.everydayMouseUp();
