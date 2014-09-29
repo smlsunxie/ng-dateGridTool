@@ -36,6 +36,17 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
 
 
 
+        reset = () ->
+
+          for day in WEEKDAY_ARRAY
+            for hour in DAYHOUR_ARRAY
+              scope.dateGrid.week[day].hours[hour].selected = false
+              if day == 0
+                scope.dateGrid.everyday.hours[hour].selected = false
+            scope.dateGrid.week[day].allday.selected = false
+
+
+
         setStartGrid = (type, value, selected) ->
 
           if type == ALL_DAY_GRID
@@ -182,7 +193,8 @@ angular.module("dateGridTool", []).directive "dateGridTool", ["$document", ($doc
 
 
 
-        init()
+        if scope.dateGrid.everyday.hours.length == 0
+          init()
 
 
 
