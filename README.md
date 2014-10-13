@@ -13,7 +13,7 @@ implement by angular. hope every one enjoy!
 
 ## run sample
 
-if you are first run this project, run below command first:
+if you are first time to run this project, execute the following command:
 
 ``npm install && bower install``
 
